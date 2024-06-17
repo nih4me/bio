@@ -1,0 +1,37 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-themed">
+
+  <a class="navbar-brand" href="{% url 'web:home_view' user=request.session.profile.username %}">
+    <h5 id="logo">
+      {% if request.session.profile.logo %}
+      <img src="{{ request.scheme }}://{{ request.get_host }}/media/{{ request.session.profile.logo }}" >
+      {% else %}
+      <span>
+        <b class="text-as-logo">{{ request.session.profile.initials }}</b>
+        {% if not hide_full_name_in_text_logo %}
+        <small>{{ request.session.profile.name }}</small>
+        {% endif %}
+      </span>
+      {% endif %}
+    </h5>
+  </a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <i class="fas fa-1x fa-bars text-themed"></i>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+    <div class="navbar-nav ml-auto">
+      <a class="nav-item nav-link {{ home_is_active }}" href="{% url 'web:home_view' user=request.session.profile.username %}">Home</a>
+      <a class="nav-item nav-link {{ research_is_active }}" href="{% url 'web:research_view' user=request.session.profile.username %}">Research</a>
+      <a class="nav-item nav-link {{ publications_is_active }}" href="{% url 'web:publications_view' user=request.session.profile.username %}">Publications</a>
+      <a class="nav-item nav-link {{ teaching_is_active }}" href="{% url 'web:teaching_view' user=request.session.profile.username %}">Teaching</a>
+      <a class="nav-item nav-link {{ service_is_active }}" href="{% url 'web:service_view' user=request.session.profile.username %}">Service</a>
+      <a class="nav-item nav-link {{ blog_is_active }}" href="{% url 'web:blog_view' user=request.session.profile.username %}">Blog</a>
+      <span id="theme-toggler" class="nav-item nav-link" role="button" onclick="toggleTheme()"></span>
+    </div>
+  </div>
+
+</nav>

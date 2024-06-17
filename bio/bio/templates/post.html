@@ -1,0 +1,31 @@
+{% extends './layouts/default.html' %}
+{% load web_tags %}
+
+{% block content %}
+
+<div class="col-lg-12 mx-auto mt-5 markdown-body">
+    
+    <h1><b>{{ post.title }}</b></h1>
+  
+    <p class="post-metadata text-muted">
+        {{ post.created }} -  
+        <b>{{ post.content|estimate_reading_time }} read time</b>
+        <br>Tags: 
+        {% if post.keywords %}
+        {% for keyword in post.keywords.all %}
+        <a class="text-decoration-none no-underline" href="#">
+            <span class="tag badge badge-pill text-primary border border-primary">{{ keyword.name }}</span>
+        </a>
+        {% endfor %}
+        {% endif %}
+    </p>
+  
+    <p>Source: <a href="#">####</a></p>
+  
+    <aside>
+        {{ post.content|safe }}
+    </aside>
+  
+  </div>
+
+{% endblock content %}

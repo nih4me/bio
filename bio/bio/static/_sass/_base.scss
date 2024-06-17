@@ -1,0 +1,103 @@
+html {
+  padding-left: calc(100vw - 100%);
+}
+
+body {
+  font-family: "Reddit Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.badge {
+  font-weight: 500;
+}
+
+.bg-light,
+.badge-light {
+  &,
+  * {
+    color: $text-black !important;
+  }
+}
+
+.bg-dark,
+.badge-dark {
+  &,
+  * {
+    color: $text-white !important;
+  }
+}
+
+/* -------------- */
+
+.text-as-logo {
+  font-family: "Major Mono Display", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+#logo {
+  small {
+    display: block;
+    font-size: medium;
+  }
+}
+
+.progress-bar {
+  & {
+    visibility: visible; 
+    animation-name: slideInLeft;
+  }
+  @for $i from 1 through 100 {
+    &[aria-valuenow='#{$i}'] {
+      width: $i * 1%;
+    }
+  }
+}
+
+#education + ul {
+  & {
+      padding: 10px;
+      background: $light;
+  }
+  li {
+      margin-left: 20px;
+  }
+}
+
+.carousel-indicators {
+  li {
+    background-color: $secondary;
+  }
+}
+
+.bg-gray {
+  background: $secondary !important;
+}
+
+.course-card {
+  .card-top {
+    background: $gray;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .card-img-top {
+    object-fit: contain;
+    object-position: center;
+    height: 70px;
+    max-height: 70px;
+  }
+  .card-title {
+    small {
+      font-size: small;
+    }
+  }
+}
+
+.publication-options {
+  width: 100px;
+  max-width: 100px;
+}
+
+

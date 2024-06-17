@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+
+{% include '../includes/head.html' %}
+
+<body class="h-100 d-flex flex-column">
+
+  <main class="flex-shrink-0 container mt-5">
+    {% include '../includes/navbar.html' %}
+    {% block content %}{% endblock content %}
+  </main>
+  {% include '../includes/footer.html' %}
+
+  {% include '../includes/analytics.html' %}
+  {% include '../includes/scripts.html' %}
+
+  {% if buymeacoffee.enabled %}
+    <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="{{ buymeacoffee.username }}" data-description="{{ buymeacoffee.description }}" data-message="{{ buymeacoffee.message }}" data-color="{{ buymeacoffee.color }}" data-position="Right" data-x_margin="16" data-y_margin="16"></script>
+  {% endif %}
+</body>
+
+</html>

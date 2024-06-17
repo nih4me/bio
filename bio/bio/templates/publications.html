@@ -1,0 +1,51 @@
+{% extends './layouts/default.html' %}
+{% load research_tags %}
+
+{% block content %}
+<div class="col-lg-12 mx-auto mt-5 markdown-body">
+    {% if publications %}
+    <h3 id="selected-publications"><strong>Selected Publications</strong></h3>
+    {% regroup publications|dictsort:"publication_type.priority" by publication_type as publication_types %}
+    {% for publication_type in publication_types %}
+    <h5 id="publication-type" class="mt-5"><strong>{{ publication_type.grouper.name }}</strong></h5>
+    <table class="table table-responsive w-100 d-block d-md-table">
+        <thead>
+            <tr>
+                <th class="bg-gray publication-main"></th>
+                <th class="bg-gray publication-options">Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for publication in publication_type.list %}
+            <tr class="mt-3">
+                <td class="publication-main">
+                    <ul class="fa-ul">
+                        <li class="text-themed">
+                            <span class="fa-li"><i class="fas fa-file"></i></span>
+                            <strong class="publication-venu-short-name">[{{ publication.venue.short_name }}]</strong> 
+                            <span class="publication-title">{{ publication.title|safe }}</span>
+                            {% if publication.authors %}
+                            <span class="publication-authors">
+                                {% for author in publication.authors %}
+                                <h6 class="d-inline-block"><span class="badge badge-dark">{{ author|author_full_name }}</span></h6> 
+                                {% endfor %}
+                            </span>
+                            {% endif %}
+                            {% if publication.note %}
+                            <br>
+                            <small class="text-as-logo">{{ publication.note|safe }}</small>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </td>
+                <td class="publication-options">
+                    <a class="text-danger" target="_blank" href="{{ publication.url }}"><i class="fas fa-download"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endfor %}
+    {% endif %}
+</div>
+{% endblock content %}

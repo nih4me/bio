@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+django-tinymce = "*"
+django-qr-code = "*"
+django-model-utils = "*"
+django-money = "*"
+django-environ = "*"
+django-csp = "*"
+psycopg2-binary = "*"
+django-countries = "*"
+django-import-export = "*"
+django-compressor = "*"
+django-libsass = "*"
+django-jsonform = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"

@@ -1,0 +1,76 @@
+{% extends './layouts/default.html' %}
+
+{% block content %}
+<div class="col-lg-12 mx-auto mt-5 markdown-body">
+    {% if research_topics %}
+    <h3 id="research-topic"><strong>Research Interests</strong></h3>
+    <ul class="task-list">
+        {% for topic in research_topics %}
+        <li class="task-list-item mt-2"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked>{{ topic.name }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    
+    {% if keywords %}
+    <br>
+    <h3 id="keyword"><strong>Keywords</strong></h3>
+    <p class="card-text">
+        {% for keyword in keywords %}
+        <span class="badge badge-dark">{{ keyword.name }}</span>
+        {% endfor %}
+    </p>
+    {% endif %}
+
+    {% if call_to_actions %}
+    <br>
+    <div id="calls-carousel-indicators" class="carousel slide" data-ride="false">
+        <ol class="carousel-indicators">
+            {% for call in call_to_actions %}
+            <li data-target="#calls-carousel-indicators" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %} active {% endif %}">
+            </li>
+            {% endfor %}
+        </ol>
+        
+
+        <div class="carousel-inner">
+            {% for call in call_to_actions %}
+            <div class="carousel-item {% if forloop.first %} active {% endif %}">
+                <aside class="d-block w-100">
+                    <div class="post card border-danger">
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                {{ call.title }}
+                            </h4>
+                            <p class="card-text">
+                                {{ call.content|safe }}
+                            </p>
+                        </div>
+                    </div> 
+                </aside>      
+            </div>
+            {% endfor %}
+        </div>
+      
+        <a class="carousel-control-prev" href="#calls-carousel-indicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+      
+        <a class="carousel-control-next" href="#calls-carousel-indicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+    </div>
+    {% endif %}
+
+    {% if latest_news %}
+    <!-- TODO: Implement News -->
+    <br>
+    <h3 id="latest-news"><strong>Latest News</strong></h3>
+    {% for news in latest_news %}
+    <span class="badge badge-dark">{{ keyword.name }}</span>
+    {% endfor %}
+    {% endif %}
+
+</div>
+{% endblock content %}
